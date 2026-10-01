@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Absensi Saya — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Kartu QR absensi pribadi dan riwayat absensi siswa.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-siswa.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Absensi Saya</div>
+      <div class="tag">Kartu QR & riwayat absensi</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+
+  <div class="att-qr-card">
+    <div class="att-qr-box" id="qrBox"></div>
+    <h2 id="qrName" style="font-size:15px;margin:0 0 2px;">—</h2>
+    <p style="font-size:12px;color:var(--text-soft);margin:0 0 12px;" id="qrMeta">—</p>
+    <p class="att-qr-hint">Tunjukkan kode QR ini ke guru untuk dipindai saat absen masuk kelas. Kode ini unik untuk akun Anda — jangan bagikan tangkapan layarnya ke orang lain.</p>
+    <div class="att-today-status" id="todayStatusBox">Memuat status hari ini…</div>
+  </div>
+
+  <section class="dash-section">
+    <div class="dash-section-head">
+      <h2>📊 Ringkasan Bulan Ini</h2>
+    </div>
+    <div class="att-summary" id="attSummary">
+      <div class="att-summary-item"><strong>—</strong><span>Hadir</span></div>
+      <div class="att-summary-item"><strong>—</strong><span>Izin</span></div>
+      <div class="att-summary-item"><strong>—</strong><span>Sakit</span></div>
+      <div class="att-summary-item"><strong>—</strong><span>Alpa</span></div>
+    </div>
+  </section>
+
+  <section class="dash-section">
+    <div class="dash-section-head">
+      <h2>🗓️ Riwayat Absensi</h2>
+    </div>
+    <div class="card-surface" style="padding:4px 14px;">
+      <div id="attHistory"></div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi portal siswa">
+  <a class="bn-item" href="dashboard-siswa.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="jadwal-pelajaran.html"><span class="bn-icon">📅</span>Jadwal</a>
+  <a class="bn-item" href="daftar-cbt.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item" href="pengumuman-siswa.html"><span class="bn-icon">🔔</span>Pengumuman</a>
+  <a class="bn-item" href="kartu-pelajar.html"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initAbsensiSiswa } from "./js/absensi-siswa.js";
+  initAbsensiSiswa();
+</script>
+</body>
+</html>

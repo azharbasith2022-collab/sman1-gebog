@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Kartu Pelajar Digital — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Kartu Pelajar Digital: foto, nama, NIS/NISN, kelas, dan kode QR siswa.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-siswa.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Kartu Pelajar Digital</div>
+      <div class="tag">Profil identitas siswa</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+
+  <div class="id-card-wrap">
+    <div class="id-card">
+      <div class="id-card-head">
+        <div class="crest" aria-hidden="true"><img src="assets/logo-sman1-gebog.png" alt=""></div>
+        <div class="id-card-head-text">
+          <div class="name">SMA NEGERI 1 GEBOG</div>
+          <div class="tag">Kartu Pelajar Digital</div>
+        </div>
+        <span class="id-card-badge">SISWA</span>
+      </div>
+
+      <div class="id-card-photo" id="idCardPhoto" aria-hidden="true">?</div>
+
+      <div class="id-card-body">
+        <h2 id="idCardName">—</h2>
+        <p class="id-card-class" id="idCardClass">—</p>
+
+        <dl class="id-card-fields">
+          <div class="id-card-field"><dt>NIS</dt><dd id="idCardNis">—</dd></div>
+          <div class="id-card-field"><dt>NISN</dt><dd id="idCardNisn">—</dd></div>
+        </dl>
+
+        <div class="id-card-qr-box" id="idCardQrBox"></div>
+        <p class="id-card-hint">Kode QR ini unik untuk akun Anda — dipakai untuk absensi & verifikasi identitas. Jangan bagikan tangkapan layarnya ke orang lain.</p>
+      </div>
+
+      <div class="id-card-footer">Kartu ini berlaku selama status siswa aktif di SMA Negeri 1 Gebog</div>
+    </div>
+  </div>
+
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi portal siswa">
+  <a class="bn-item" href="dashboard-siswa.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="jadwal-pelajaran.html"><span class="bn-icon">📅</span>Jadwal</a>
+  <a class="bn-item" href="daftar-cbt.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item" href="pengumuman-siswa.html"><span class="bn-icon">🔔</span>Pengumuman</a>
+  <a class="bn-item active" href="kartu-pelajar.html"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initKartuPelajar } from "./js/kartu-pelajar.js";
+  initKartuPelajar();
+</script>
+</body>
+</html>

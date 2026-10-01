@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Hasil & Riwayat CBT — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Riwayat dan hasil ujian Computer Based Test Anda.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-siswa.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Hasil &amp; Riwayat CBT</div>
+      <div class="tag">Portal Siswa</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+  <div class="dash-greeting">
+    <h1 style="font-size:16px;">📊 Hasil Ujian Anda</h1>
+    <p>Hanya menampilkan hasil ujian milik Anda sendiri.</p>
+  </div>
+
+  <div class="info-banner" id="statsBanner" style="margin:0 0 18px;display:none;">
+    <div class="info-banner-top">
+      <div class="badge" aria-hidden="true">📊</div>
+      <div>
+        <strong>Ringkasan Nilai</strong>
+        <small>Dari seluruh ujian yang sudah Anda kerjakan</small>
+      </div>
+    </div>
+    <div class="stats-grid" id="statsGrid"></div>
+  </div>
+
+  <div class="card-surface" style="padding:4px 14px;">
+    <div id="resultList"></div>
+  </div>
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi portal siswa">
+  <a class="bn-item" href="dashboard-siswa.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="jadwal-pelajaran.html"><span class="bn-icon">📅</span>Jadwal</a>
+  <a class="bn-item" href="daftar-cbt.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item" href="pengumuman-siswa.html"><span class="bn-icon">🔔</span>Pengumuman</a>
+  <a class="bn-item" href="kartu-pelajar.html"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initHasilCbt } from "./js/hasil-cbt.js";
+  initHasilCbt();
+</script>
+</body>
+</html>

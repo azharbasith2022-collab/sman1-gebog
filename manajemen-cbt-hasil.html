@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Manajemen CBT & Hasil — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Kelola ujian CBT: buat, edit, aktifkan/nonaktifkan ujian, dan lihat hasil beserta statistiknya.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-guru.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Manajemen CBT & Hasil</div>
+      <div class="tag" id="totalLabel">—</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+  <div class="dash-greeting">
+    <h1 style="font-size:16px;">📝 Ujian CBT Saya</h1>
+    <p>Buat, kelola, dan lihat hasil ujian untuk kelas Anda.</p>
+  </div>
+
+  <div id="classChips" class="staff-filters" role="tablist" aria-label="Filter kelas" style="margin-bottom:16px;"></div>
+
+  <div id="examList" class="list-grid"></div>
+</main>
+
+<button type="button" class="fab" id="addBtn">
+  <span aria-hidden="true">➕</span> Buat Ujian
+</button>
+
+<nav class="bottom-nav" aria-label="Navigasi portal guru">
+  <a class="bn-item" href="dashboard-guru.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="kelas-jadwal.html"><span class="bn-icon">📘</span>Kelas</a>
+  <a class="bn-item active" href="manajemen-cbt-hasil.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item" href="bank-soal.html"><span class="bn-icon">🗂️</span>Bank Soal</a>
+  <a class="bn-item" href="dashboard-guru.html#profileCard"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<!-- Bottom sheet: form buat/edit ujian -->
+<div class="sheet-overlay" id="sheetOverlay">
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheetTitle">Buat Ujian</h2>
+      <button type="button" class="icon-btn" id="sheetCloseBtn" aria-label="Tutup" style="color:var(--text);">✕</button>
+    </div>
+
+    <div class="auth-alert error" id="formError" style="display:none;" role="alert">
+      <span aria-hidden="true">⚠️</span>
+      <span id="formErrorText"></span>
+    </div>
+
+    <div id="noClassNote" class="auth-alert success" style="display:none;">
+      <span aria-hidden="true">ℹ️</span>
+      <span>Anda belum ditugaskan ke kelas mana pun (lihat halaman Kelas & Jadwal), sehingga belum bisa membuat ujian. Hubungi Tata Usaha/Admin.</span>
+    </div>
+
+    <form id="examForm" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="fTitle">Judul Ujian</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">📝</span>
+          <input type="text" id="fTitle" placeholder="mis. Ulangan Harian Bab 1" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fSubject">Mata Pelajaran</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">📘</span>
+          <input type="text" id="fSubject" list="examSubjectSuggestions" placeholder="mis. Matematika" required>
+        </div>
+        <datalist id="examSubjectSuggestions"></datalist>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fClass">Kelas</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">🏫</span>
+          <select id="fClass" required></select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fDuration">Durasi (menit)</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">⏱️</span>
+          <input type="number" id="fDuration" min="5" max="300" value="60" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fStart">Waktu Mulai</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">🕒</span>
+          <input type="datetime-local" id="fStart" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fEnd">Waktu Selesai</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">🏁</span>
+          <input type="datetime-local" id="fEnd" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-check">
+          <input type="checkbox" id="fActive" checked>
+          Aktifkan ujian ini (terlihat oleh siswa)
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Pilih Soal dari Bank Soal</label>
+        <div class="form-hint" id="questionHint">Memuat daftar soal…</div>
+        <div id="questionPicker" style="max-height:220px;overflow-y:auto;border:1px solid var(--border);border-radius:12px;padding:6px 12px;margin-bottom:16px;"></div>
+      </div>
+
+      <button type="submit" class="btn-primary btn-block" id="submitBtn">
+        <span id="submitBtnText">Simpan Ujian</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Bottom sheet: hasil & statistik ujian (read-only) -->
+<div class="sheet-overlay" id="resultsOverlay">
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="resultsTitle">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="resultsTitle">Hasil Ujian</h2>
+      <button type="button" class="icon-btn" id="resultsCloseBtn" aria-label="Tutup" style="color:var(--text);">✕</button>
+    </div>
+    <div id="resultsStats" class="qb-badges" style="margin-bottom:14px;"></div>
+    <div id="resultsList"></div>
+  </div>
+</div>
+
+<!-- Dialog konfirmasi hapus ujian -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="es-icon" aria-hidden="true">🗑️</div>
+    <h3>Hapus ujian ini?</h3>
+    <p>Ujian yang sudah dihapus tidak dapat dikembalikan. Hasil siswa yang sudah tersimpan tidak ikut terhapus.</p>
+    <div class="confirm-actions">
+      <button type="button" class="btn-secondary" id="confirmCancelBtn">Batal</button>
+      <button type="button" class="btn-danger" id="confirmDeleteBtn">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initManajemenCbt } from "./js/manajemen-cbt-hasil.js";
+  initManajemenCbt();
+</script>
+</body>
+</html>

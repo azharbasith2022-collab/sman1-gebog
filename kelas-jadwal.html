@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Kelas & Jadwal — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Daftar kelas yang diajar dan jadwal mengajar satu minggu penuh.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-guru.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Kelas & Jadwal</div>
+      <div class="tag" id="classCountLabel">—</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+  <div class="dash-greeting">
+    <h1 style="font-size:16px;">🏫 Kelas yang Saya Ajar</h1>
+    <p>Pilih kelas untuk menyaring jadwal, atau lihat semua sekaligus.</p>
+  </div>
+
+  <div id="classChips" class="staff-filters" role="tablist" aria-label="Filter kelas" style="margin-bottom:16px;"></div>
+
+  <div class="dash-greeting" style="margin-top:22px;">
+    <h1 style="font-size:16px;">📅 Jadwal Mengajar Satu Minggu</h1>
+    <p>Dikelompokkan per hari, Senin sampai Minggu.</p>
+  </div>
+
+  <div id="jadwalWrap"></div>
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi portal guru">
+  <a class="bn-item" href="dashboard-guru.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item active" href="kelas-jadwal.html"><span class="bn-icon">📘</span>Kelas</a>
+  <a class="bn-item" href="manajemen-cbt-hasil.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item" href="bank-soal.html"><span class="bn-icon">🗂️</span>Bank Soal</a>
+  <a class="bn-item" href="dashboard-guru.html#profileCard"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initKelasJadwal } from "./js/kelas-jadwal.js";
+  initKelasJadwal();
+</script>
+</body>
+</html>

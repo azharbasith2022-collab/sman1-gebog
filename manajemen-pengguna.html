@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Manajemen Pengguna — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Kelola akun pengguna: siswa, guru, tata usaha, admin, dan developer.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-admin.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Manajemen Pengguna</div>
+      <div class="tag" id="totalLabel">—</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+  <div class="dash-greeting">
+    <h1 style="font-size:16px;">👥 Kelola Pengguna</h1>
+    <p>Buat, ubah, nonaktifkan, atau hapus akun Siswa/Guru/TU/Admin/Developer.</p>
+  </div>
+
+  <div class="auth-alert success" id="noteAccounts">
+    <span aria-hidden="true">ℹ️</span>
+    <span>Akun baru dibuat langsung nyata di Firebase Authentication + Firestore — bukan simulasi. Kata sandi TIDAK ditentukan admin: sistem langsung mengirim email "Atur Kata Sandi" ke pengguna baru (mekanisme yang sama dengan Lupa Kata Sandi), sehingga tidak ada kata sandi sementara yang perlu dibagikan secara tidak aman.</span>
+  </div>
+
+  <div class="qb-toolbar">
+    <div class="staff-search">
+      <span aria-hidden="true">🔍</span>
+      <input type="search" id="uSearch" placeholder="Cari nama atau email…" aria-label="Cari pengguna">
+    </div>
+    <div id="roleChips" class="staff-filters" role="tablist" aria-label="Filter role"></div>
+  </div>
+
+  <div id="userList" class="list-grid"></div>
+</main>
+
+<button type="button" class="fab" id="addBtn">
+  <span aria-hidden="true">➕</span> Tambah Pengguna
+</button>
+
+<nav class="bottom-nav" aria-label="Navigasi portal Admin">
+  <a class="bn-item" href="dashboard-admin.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="manajemen-website.html"><span class="bn-icon">🖥️</span>Website</a>
+  <a class="bn-item active" href="manajemen-pengguna.html"><span class="bn-icon">👥</span>Pengguna</a>
+  <a class="bn-item" href="pengaturan-sistem.html"><span class="bn-icon">⚙️</span>Sistem</a>
+  <a class="bn-item" href="dashboard-admin.html#profileCard"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<!-- Sheet: Tambah/Edit Pengguna -->
+<div class="sheet-overlay" id="sheetUser">
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetUserTitle">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head"><h2 id="sheetUserTitle">Tambah Pengguna</h2>
+      <button type="button" class="icon-btn sheet-close" id="sheetUserClose" aria-label="Tutup" style="color:var(--text);">✕</button></div>
+    <div class="auth-alert error" id="errUser" style="display:none;" role="alert"><span aria-hidden="true">⚠️</span><span></span></div>
+    <form id="formUser" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="uName">Nama Lengkap</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🧑</span><input type="text" id="uName" required placeholder="mis. Ahmad Fauzi"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="uEmail">Email</label>
+        <div class="form-input-wrap"><span aria-hidden="true">📧</span><input type="email" id="uEmail" required placeholder="nama@contoh.sch.id"></div>
+        <div class="form-hint" id="uEmailHint">Email dipakai untuk masuk (login) — tidak dapat diubah setelah akun dibuat.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="uPhone">Telepon (opsional)</label>
+        <div class="form-input-wrap"><span aria-hidden="true">📱</span><input type="text" id="uPhone" placeholder="mis. 08123456789"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="uRole">Role</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">🏷️</span>
+          <select id="uRole">
+            <option value="siswa">Siswa</option>
+            <option value="guru">Guru</option>
+            <option value="tu">Tata Usaha</option>
+            <option value="admin">Admin</option>
+            <option value="developer">Developer</option>
+          </select>
+        </div>
+        <div class="form-hint" id="uRoleHint"></div>
+      </div>
+
+      <div class="form-group role-field role-siswa">
+        <label class="form-label" for="uClassId">Kelas</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🏫</span><input type="text" id="uClassId" placeholder="mis. XII IPA 1"></div>
+      </div>
+      <div class="form-group role-field role-siswa">
+        <label class="form-label" for="uNis">NIS</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🪪</span><input type="text" id="uNis" placeholder="mis. 22110045"></div>
+      </div>
+      <div class="form-group role-field role-siswa">
+        <label class="form-label" for="uNisn">NISN</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🪪</span><input type="text" id="uNisn" placeholder="mis. 0051234567"></div>
+      </div>
+      <div class="form-group role-field role-siswa">
+        <label class="form-label" for="uPhotoUrl">Foto (tautan gambar, opsional)</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🖼️</span><input type="url" id="uPhotoUrl" placeholder="https://..."></div>
+        <div class="form-hint">Tempel tautan foto (mis. dari Google Drive/album sekolah yang bisa diakses publik) — sistem ini tidak mengunggah file agar tetap gratis. Kosongkan jika belum ada; kartu pelajar akan memakai inisial nama sebagai gantinya.</div>
+      </div>
+      <div class="form-group role-field role-guru">
+        <label class="form-label" for="uSubject">Mata Pelajaran</label>
+        <div class="form-input-wrap"><span aria-hidden="true">📘</span><input type="text" id="uSubject" placeholder="mis. Matematika"></div>
+      </div>
+      <div class="form-group role-field role-tu">
+        <label class="form-label" for="uJabatan">Jabatan/Bagian</label>
+        <div class="form-input-wrap"><span aria-hidden="true">💼</span><input type="text" id="uJabatan" placeholder="mis. Tata Usaha — Kepegawaian"></div>
+      </div>
+
+      <div class="form-group" id="uDisabledGroup" style="display:none;">
+        <label class="form-check"><input type="checkbox" id="uDisabled"> Nonaktifkan akun ini</label>
+        <div class="form-hint">Akun nonaktif tidak bisa masuk ke portal manapun, walau kata sandinya masih benar.</div>
+      </div>
+
+      <button type="submit" class="btn-primary btn-block" id="submitUser"><span>Simpan Pengguna</span></button>
+    </form>
+  </div>
+</div>
+
+<!-- Dialog konfirmasi hapus -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="es-icon" aria-hidden="true">🗑️</div>
+    <h3>Hapus akun ini?</h3>
+    <p id="confirmText">Data pengguna di Firestore akan dihapus dan akun tidak bisa lagi masuk ke portal manapun. Catatan: akun Firebase Authentication itu sendiri tidak ikut terhapus (butuh Admin SDK berbayar) — nonaktifkan akun jika hanya ingin memblokir sementara.</p>
+    <div class="confirm-actions">
+      <button type="button" class="btn-secondary" id="confirmCancelBtn">Batal</button>
+      <button type="button" class="btn-danger" id="confirmDeleteBtn">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initManajemenPengguna } from "./js/manajemen-pengguna.js";
+  initManajemenPengguna();
+</script>
+</body>
+</html>

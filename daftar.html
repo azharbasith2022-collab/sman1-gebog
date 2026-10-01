@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+  <title>Daftar Akun Siswa — SMA Negeri 1 Gebog</title>
+
+  <meta
+    name="description"
+    content="Daftar akun Portal Siswa SMA Negeri 1 Gebog. Pendaftaran akan diperiksa dan disetujui oleh Admin sekolah sebelum dapat digunakan."
+  >
+
+  <meta name="robots" content="noindex, nofollow">
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>"
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-theme="light">
+
+<header class="auth-header">
+
+  <a href="index.html" class="brand" style="text-decoration:none;">
+
+    <div class="crest" aria-hidden="true">
+      <img
+        src="assets/logo-sman1-gebog.png"
+        alt="Logo SMA Negeri 1 Gebog"
+        width="40"
+        height="40"
+      >
+    </div>
+
+    <div class="brand-text">
+      <div class="name">SMA NEGERI 1 GEBOG</div>
+      <div class="tag">Portal Internal</div>
+    </div>
+
+  </a>
+
+  <button
+    class="icon-btn"
+    id="themeToggle"
+    type="button"
+    aria-label="Ganti tema gelap/terang"
+  >
+    🌙
+  </button>
+
+</header>
+
+
+<main class="auth-wrap">
+
+  <div class="auth-card">
+
+    <!-- =========================================================
+         FORM VIEW
+    ========================================================== -->
+
+    <div id="formView">
+
+      <div class="auth-icon" aria-hidden="true">📝</div>
+
+      <h1>Daftar Akun Siswa</h1>
+
+      <p class="auth-sub">
+        Pendaftaran ini khusus untuk Siswa. Akun baru akan
+        <strong>diperiksa dan disetujui (ACC) oleh Admin</strong>
+        terlebih dahulu — Anda belum bisa masuk portal sebelum disetujui.
+      </p>
+
+
+      <div
+        class="auth-alert error"
+        id="daftarError"
+        style="display:none;"
+        role="alert"
+      >
+        <span aria-hidden="true">⚠️</span>
+        <span id="daftarErrorText"></span>
+      </div>
+
+
+      <form id="daftarForm" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="dName">Nama Lengkap</label>
+          <div class="form-input-wrap">
+            <span aria-hidden="true">🧑</span>
+            <input type="text" id="dName" required placeholder="mis. Ahmad Fauzi" autocomplete="name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dEmail">Email</label>
+          <div class="form-input-wrap">
+            <span aria-hidden="true">📧</span>
+            <input type="email" id="dEmail" required placeholder="email aktif Anda" autocomplete="username">
+          </div>
+          <div class="form-hint">Dipakai untuk masuk (login) setelah akun disetujui Admin.</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dPhone">Telepon (opsional)</label>
+          <div class="form-input-wrap">
+            <span aria-hidden="true">📱</span>
+            <input type="text" id="dPhone" placeholder="mis. 08123456789" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dClassId">Kelas</label>
+          <div class="form-input-wrap">
+            <span aria-hidden="true">🏫</span>
+            <input type="text" id="dClassId" required placeholder="mis. XII IPA 1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dNis">NIS</label>
+          <div class="form-input-wrap">
+            <span aria-hidden="true">🪪</span>
+            <input type="text" id="dNis" required placeholder="mis. 22110045">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dNisn">NISN</label>
+          <div class="form-input-wrap">
+            <span aria-hidden="true">🪪</span>
+            <input type="text" id="dNisn" required placeholder="mis. 0051234567">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dPassword">Kata Sandi</label>
+          <div class="form-input-wrap">
+            <span aria-hidden="true">🔒</span>
+            <input type="password" id="dPassword" required placeholder="Minimal 6 karakter" autocomplete="new-password">
+            <button type="button" class="toggle-pass" id="toggleDPass" aria-label="Tampilkan kata sandi">👁️</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dPassword2">Ulangi Kata Sandi</label>
+          <div class="form-input-wrap">
+            <span aria-hidden="true">🔒</span>
+            <input type="password" id="dPassword2" required placeholder="Ketik ulang kata sandi" autocomplete="new-password">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary btn-block" id="daftarSubmit">
+          <span id="daftarBtnText">Daftar</span>
+        </button>
+
+        <noscript>
+          <div class="auth-alert error" style="display:flex;margin-top:12px;" role="alert">
+            JavaScript harus diaktifkan untuk mendaftar.
+          </div>
+        </noscript>
+
+      </form>
+
+      <div class="auth-role-note">
+        <span aria-hidden="true">ℹ️</span>
+        <span>
+          Sudah punya akun? <a href="login.html" class="auth-link">Masuk di sini</a>.
+          Pendaftaran Guru/Tata Usaha/Admin dibuat langsung oleh Admin sekolah.
+        </span>
+      </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         SUCCESS VIEW
+    ========================================================== -->
+
+    <div id="successView" style="display:none;">
+
+      <div class="auth-icon" aria-hidden="true">⏳</div>
+
+      <h1>Pendaftaran Terkirim</h1>
+
+      <p class="auth-sub">
+        Terima kasih. Pendaftaran akun Anda sudah tercatat dan
+        <strong>sedang menunggu persetujuan (ACC) Admin sekolah</strong>.
+        Anda akan bisa masuk portal setelah akun disetujui.
+      </p>
+
+      <div class="auth-alert success" style="display:flex;">
+        <span aria-hidden="true">✅</span>
+        <span>Belum perlu melakukan apa pun lagi — cukup coba masuk beberapa saat lagi setelah dihubungi/diberi tahu Admin.</span>
+      </div>
+
+      <a href="login.html" class="btn-primary btn-block" style="margin-top:14px;justify-content:center;">
+        Ke Halaman Masuk
+      </a>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- =============================================================
+     FIREBASE DAFTAR MODULE
+============================================================== -->
+
+<script type="module">
+
+  import { auth, db } from "./js/firebase-init.js";
+  import { translateAuthError } from "./js/auth.js";
+  import {
+    createUserWithEmailAndPassword,
+    signOut,
+  } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+  import {
+    doc,
+    setDoc,
+    serverTimestamp,
+  } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+  const themeBtn = document.getElementById("themeToggle");
+  const formView = document.getElementById("formView");
+  const successView = document.getElementById("successView");
+  const form = document.getElementById("daftarForm");
+  const errorBox = document.getElementById("daftarError");
+  const errorText = document.getElementById("daftarErrorText");
+  const submitBtn = document.getElementById("daftarSubmit");
+  const btnText = document.getElementById("daftarBtnText");
+  const toggleDPass = document.getElementById("toggleDPass");
+  const passwordInput = document.getElementById("dPassword");
+
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+
+  toggleDPass.addEventListener("click", () => {
+    const show = passwordInput.type === "password";
+    passwordInput.type = show ? "text" : "password";
+    toggleDPass.textContent = show ? "🙈" : "👁️";
+  });
+
+  function showError(msg) {
+    errorText.textContent = msg;
+    errorBox.style.display = "flex";
+  }
+  function hideError() {
+    errorBox.style.display = "none";
+  }
+  function setLoading(loading) {
+    submitBtn.disabled = loading;
+    btnText.textContent = loading ? "Memproses…" : "Daftar";
+  }
+
+  let submitting = false;
+
+  form.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    if (submitting) return;
+    hideError();
+
+    const name = document.getElementById("dName").value.trim();
+    const email = document.getElementById("dEmail").value.trim();
+    const phone = document.getElementById("dPhone").value.trim();
+    const classId = document.getElementById("dClassId").value.trim();
+    const nis = document.getElementById("dNis").value.trim();
+    const nisn = document.getElementById("dNisn").value.trim();
+    const password = document.getElementById("dPassword").value;
+    const password2 = document.getElementById("dPassword2").value;
+
+    if (!name || !email || !classId || !nis || !nisn) {
+      return showError("Semua kolom wajib diisi, kecuali telepon.");
+    }
+    if (password.length < 6) {
+      return showError("Kata sandi minimal 6 karakter.");
+    }
+    if (password !== password2) {
+      return showError("Kata sandi dan ulangi kata sandi tidak sama.");
+    }
+
+    submitting = true;
+    setLoading(true);
+
+    let createdUid = null;
+    try {
+      // 1) Buat akun Firebase Authentication. Ini halaman publik tanpa sesi
+      //    admin yang perlu dilindungi, jadi dipakai langsung `auth` primer
+      //    (berbeda dari Manajemen Pengguna yang butuh instance kedua).
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      createdUid = cred.user.uid;
+
+      // 2) Simpan profil ke Firestore dengan status PENDING & disabled:true.
+      //    firestore.rules hanya mengizinkan self-create dengan kombinasi
+      //    role:'siswa' + status:'pending' + disabled:true persis ini — jadi
+      //    siswa tidak bisa memberi dirinya akses portal tanpa di-ACC Admin.
+      await setDoc(doc(db, "users", createdUid), {
+        name, email, phone, classId, nis, nisn,
+        role: "siswa",
+        status: "pending",
+        disabled: true,
+        active: false,
+        createdAt: serverTimestamp(),
+      });
+
+      // 3) Langsung keluar dari sesi — akun belum disetujui, jangan biarkan
+      //    tampak seperti sudah "login".
+      await signOut(auth);
+
+      form.reset();
+      formView.style.display = "none";
+      successView.style.display = "block";
+    } catch (error) {
+      console.error("Daftar gagal:", error);
+
+      // Kasus langka: akun Auth berhasil dibuat tapi setDoc gagal (mis. rules
+      // atau koneksi putus di tengah). Beri tahu apa adanya, bukan pura-pura
+      // berhasil — Admin bisa dihubungi manual untuk kasus ini.
+      if (createdUid) {
+        showError(
+          "Akun berhasil dibuat, tetapi data pendaftaran gagal disimpan. Hubungi Admin/Tata Usaha sekolah dan sebutkan email yang tadi didaftarkan."
+        );
+      } else {
+        showError(translateAuthError(error?.code));
+      }
+    } finally {
+      setLoading(false);
+      submitting = false;
+    }
+  });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>SMA Negeri 1 Gebog — Beranda</title>
+<meta name="description" content="Website resmi SMA Negeri 1 Gebog. Berprestasi, Berkarakter, Siap Masa Depan.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="site-header">
+  <div class="brand">
+    <div class="crest" aria-hidden="true"><img src="assets/logo-sman1-gebog.png" alt="Logo SMA Negeri 1 Gebog" width="40" height="40"></div>
+    <div class="brand-text">
+      <div class="name">SMA NEGERI 1 GEBOG</div>
+      <div class="tag">Berprestasi, Berkarakter, Siap Masa Depan</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="searchToggle" aria-label="Buka pencarian" aria-expanded="false">🔍</button>
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="menuToggle" aria-label="Buka menu navigasi" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<div class="search-bar" id="searchBar">
+  <input type="search" placeholder="Cari berita, pengumuman, halaman..." aria-label="Cari di website">
+</div>
+
+<div class="nav-drawer" id="navDrawer">
+  <nav class="nav-panel" aria-label="Menu utama">
+    <div class="nav-panel-head">
+      <strong>Menu</strong>
+      <button class="icon-btn" id="menuClose" aria-label="Tutup menu">✕</button>
+    </div>
+    <a href="#beranda">🏠 Beranda</a>
+    <a href="profil.html">🏫 Profil</a>
+    <a href="guru-staff.html">🧑‍🏫 Guru &amp; Staff</a>
+    <a href="akademik.html">📘 Akademik</a>
+    <a href="berita.html">📰 Berita</a>
+    <a href="pengumuman.html">📣 Pengumuman</a>
+    <a href="agenda.html">📅 Agenda</a>
+    <a href="galeri.html">🖼️ Galeri</a>
+    <a href="prestasi.html">🏆 Prestasi</a>
+    <a href="#ppdb">📝 PPDB</a>
+    <a href="kontak.html">📍 Kontak</a>
+    <a href="login.html" class="login-link">🔐 Login Portal</a>
+  </nav>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="beranda">
+    <p class="hero-eyebrow">Selamat datang di</p>
+    <h1>SMA Negeri 1 Gebog</h1>
+    <p>Mencetak generasi unggul, berkarakter, berprestasi, dan siap menghadapi masa depan bersama guru dan tenaga kependidikan terbaik di Kabupaten Kudus.</p>
+    <div class="hero-ctas">
+      <a href="profil.html" class="btn btn-primary">Jelajahi Sekolah →</a>
+      <a href="profil.html" class="btn btn-ghost">▶ Profil Sekolah</a>
+    </div>
+    <div class="hero-dots" aria-hidden="true">
+      <span class="active"></span><span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <!-- QUICK ACCESS -->
+  <nav class="quick-access" aria-label="Akses cepat">
+    <a class="qa-item" href="#jadwal"><span class="qa-icon">📅</span><span>Jadwal</span></a>
+    <a class="qa-item" href="#cbt"><span class="qa-icon">📝</span><span>CBT</span></a>
+    <a class="qa-item" href="pengumuman.html"><span class="qa-icon">📣</span><span>Pengumuman</span></a>
+    <a class="qa-item" href="berita.html"><span class="qa-icon">📰</span><span>Berita</span></a>
+    <a class="qa-item" href="agenda.html"><span class="qa-icon">🗓️</span><span>Agenda</span></a>
+    <a class="qa-item" href="galeri.html"><span class="qa-icon">🖼️</span><span>Galeri</span></a>
+    <a class="qa-item" href="prestasi.html"><span class="qa-icon">🏆</span><span>Prestasi</span></a>
+    <a class="qa-item" href="profil.html"><span class="qa-icon">🏫</span><span>Profil</span></a>
+  </nav>
+
+  <!-- INFO SEKOLAH + STATISTIK -->
+  <section class="info-banner" id="profil-singkat">
+    <div class="info-banner-top">
+      <div class="badge">🏫</div>
+      <div>
+        <strong>SMA Negeri 1 Gebog</strong>
+        <small>Sekolah Menengah Atas Negeri di Kabupaten Kudus</small>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat"><b>—</b><span>Siswa</span></div>
+      <div class="stat"><b>—</b><span>Guru</span></div>
+      <div class="stat"><b>—</b><span>Ruang Kelas</span></div>
+      <div class="stat"><b>—</b><span>Prestasi</span></div>
+    </div>
+  </section>
+
+  <!-- BERITA -->
+  <section class="section" id="berita">
+    <div class="section-head">
+      <h2>📰 Berita Terbaru</h2>
+      <a href="berita.html" class="see-all">Lihat Semua →</a>
+    </div>
+    <div class="card-surface is-compact" id="newsList"></div>
+  </section>
+
+  <!-- PENGUMUMAN -->
+  <section class="section" id="pengumuman">
+    <div class="section-head">
+      <h2>📣 Pengumuman</h2>
+      <a href="pengumuman.html" class="see-all">Lihat Semua →</a>
+    </div>
+    <div class="card-surface" id="annList"></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="section" id="agenda">
+    <div class="section-head">
+      <h2>🗓️ Agenda</h2>
+      <a href="agenda.html" class="see-all">Lihat Semua →</a>
+    </div>
+    <div class="card-surface is-compact" id="agendaList"></div>
+  </section>
+
+  <!-- PRESTASI -->
+  <section class="section" id="prestasi">
+    <div class="section-head">
+      <h2>🏆 Prestasi</h2>
+      <a href="prestasi.html" class="see-all">Lihat Semua →</a>
+    </div>
+    <div class="h-scroll" id="prestasiList"></div>
+  </section>
+
+  <!-- GALERI -->
+  <section class="section section--tight-bottom" id="galeri">
+    <div class="section-head">
+      <h2>🖼️ Galeri</h2>
+      <a href="galeri.html" class="see-all">Lihat Semua →</a>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <div class="crest crest--sm" aria-hidden="true"><img src="assets/logo-sman1-gebog.png" alt="Logo SMA Negeri 1 Gebog" width="34" height="34"></div>
+    <strong>SMA Negeri 1 Gebog</strong>
+  </div>
+  <p>Jl. PR Sukun, Gondosari, Kecamatan Gebog, Kabupaten Kudus, Jawa Tengah<br>
+  Nomor telepon &amp; email resmi akan ditampilkan di halaman <a href="kontak.html">Kontak</a> setelah dikonfirmasi pihak sekolah.</p>
+  <div class="footer-links">
+    <a href="profil.html">Profil Sekolah</a>
+    <a href="akademik.html">Akademik</a>
+    <a href="#ppdb">PPDB</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="login.html">Login Portal</a>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> SMA Negeri 1 Gebog. Seluruh hak cipta dilindungi.</div>
+</footer>
+
+<nav class="bottom-nav" aria-label="Navigasi bawah">
+  <a class="bn-item active" href="#beranda"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="#jadwal"><span class="bn-icon">📅</span>Jadwal</a>
+  <a class="bn-item" href="pengumuman.html"><span class="bn-icon">🔔</span>Pengumuman</a>
+  <a class="bn-item" href="profil.html"><span class="bn-icon">👤</span>Profil</a>
+  <a class="bn-item" href="#" id="bottomMenuBtn"><span class="bn-icon">☰</span>Menu</a>
+</nav>
+
+<script src="js/main.js"></script>
+<script src="js/home-data.js"></script>
+</body>
+</html>

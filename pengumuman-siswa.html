@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Pengumuman — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Seluruh pengumuman resmi sekolah untuk siswa.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-siswa.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Pengumuman</div>
+      <div class="tag">Portal Siswa</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+  <div class="dash-greeting">
+    <h1 style="font-size:16px;">📣 Seluruh Pengumuman</h1>
+    <p>Ketuk pengumuman untuk membaca detail selengkapnya.</p>
+  </div>
+
+  <div class="berita-toolbar">
+    <div class="staff-search">
+      <span aria-hidden="true">🔍</span>
+      <input type="search" id="pengumumanSearch" placeholder="Cari pengumuman..." aria-label="Cari pengumuman">
+    </div>
+    <div class="staff-filters" role="group" aria-label="Filter kategori pengumuman">
+      <button type="button" class="filter-chip active" data-category="semua">Semua</button>
+      <button type="button" class="filter-chip" data-category="Akademik">Akademik</button>
+      <button type="button" class="filter-chip" data-category="Kegiatan">Kegiatan</button>
+      <button type="button" class="filter-chip" data-category="Umum">Umum</button>
+    </div>
+  </div>
+
+  <div id="pengumumanList"></div>
+  <p class="berita-empty" id="pengumumanEmpty" style="display:none;"></p>
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi portal siswa">
+  <a class="bn-item" href="dashboard-siswa.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="jadwal-pelajaran.html"><span class="bn-icon">📅</span>Jadwal</a>
+  <a class="bn-item" href="daftar-cbt.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item active" href="pengumuman-siswa.html"><span class="bn-icon">🔔</span>Pengumuman</a>
+  <a class="bn-item" href="kartu-pelajar.html"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initPengumumanSiswa } from "./js/pengumuman-siswa.js";
+  initPengumumanSiswa();
+</script>
+</body>
+</html>

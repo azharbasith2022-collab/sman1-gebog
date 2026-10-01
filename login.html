@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+  <title>Masuk Portal — SMA Negeri 1 Gebog</title>
+
+  <meta
+    name="description"
+    content="Masuk ke Portal SMA Negeri 1 Gebog untuk siswa, guru, tata usaha, dan admin."
+  >
+
+  <meta name="robots" content="noindex, nofollow">
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>"
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-theme="light">
+
+<header class="auth-header">
+
+  <a href="index.html" class="brand" style="text-decoration:none;">
+
+    <div class="crest" aria-hidden="true">
+      <img
+        src="assets/logo-sman1-gebog.png"
+        alt="Logo SMA Negeri 1 Gebog"
+        width="40"
+        height="40"
+      >
+    </div>
+
+    <div class="brand-text">
+      <div class="name">SMA NEGERI 1 GEBOG</div>
+      <div class="tag">Portal Internal</div>
+    </div>
+
+  </a>
+
+  <button
+    class="icon-btn"
+    id="themeToggle"
+    type="button"
+    aria-label="Ganti tema gelap/terang"
+  >
+    🌙
+  </button>
+
+</header>
+
+
+<main class="auth-wrap">
+
+  <div class="auth-card">
+
+    <!-- =========================================================
+         LOGIN VIEW
+    ========================================================== -->
+
+    <div id="loginView">
+
+      <div class="auth-icon" aria-hidden="true">🔐</div>
+
+      <h1>Masuk Portal</h1>
+
+      <p class="auth-sub">
+        Gunakan akun yang diberikan oleh sekolah untuk mengakses
+        portal siswa, guru, tata usaha, atau admin.
+      </p>
+
+
+      <div
+        class="auth-alert error"
+        id="loginError"
+        style="display:none;"
+        role="alert"
+      >
+        <span aria-hidden="true">⚠️</span>
+        <span id="loginErrorText"></span>
+      </div>
+
+
+      <!-- =======================================================
+           FORM LOGIN
+      ======================================================== -->
+<form
+        id="loginForm"
+        novalidate
+      >
+
+        <div class="form-group">
+
+          <label class="form-label" for="email">
+            Email atau Username
+          </label>
+
+          <div class="form-input-wrap">
+
+            <span aria-hidden="true">✉️</span>
+
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="contoh: budi atau budi@app.local"
+              autocomplete="username"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label" for="password">
+            Kata Sandi
+          </label>
+
+          <div class="form-input-wrap">
+
+            <span aria-hidden="true">🔒</span>
+
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Masukkan kata sandi"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="toggle-pass"
+              id="togglePass"
+              aria-label="Tampilkan kata sandi"
+            >
+              👁️
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-row-between">
+
+          <label class="form-check">
+
+            <input
+              type="checkbox"
+              id="rememberMe"
+              checked
+            >
+
+            Ingat saya di perangkat ini
+
+          </label>
+
+
+          <a
+            href="lupa-password.html"
+            class="auth-link"
+          >
+            Lupa sandi?
+          </a>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="btn-primary btn-block"
+          id="loginSubmit"
+        >
+          <span id="loginBtnText">Masuk</span>
+        </button>
+
+
+        <noscript>
+
+          <div
+            class="auth-alert error"
+            style="display:flex;margin-top:12px;"
+            role="alert"
+          >
+            JavaScript harus diaktifkan untuk login ke portal.
+          </div>
+
+        </noscript>
+
+      </form>
+
+
+      <div class="auth-role-note">
+
+        <span aria-hidden="true">ℹ️</span>
+
+        <span>
+          Belum punya akun Siswa?
+          <a href="daftar.html" class="auth-link">Daftar di sini</a>
+          (menunggu ACC Admin). Akun Guru/Tata Usaha/Admin dibuat
+          langsung oleh Admin sekolah — hubungi Tata Usaha atau lihat
+          halaman <a href="kontak.html" class="auth-link">Kontak</a>.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         SUCCESS VIEW
+    ========================================================== -->
+
+    <div
+      id="successView"
+      style="display:none;"
+    >
+
+      <div
+        class="auth-icon"
+        aria-hidden="true"
+      >
+        ✅
+      </div>
+
+      <h1 id="successTitle">
+        Berhasil Masuk
+      </h1>
+
+      <p
+        class="auth-sub"
+        id="successSub"
+      ></p>
+
+
+      <div
+        class="auth-alert success"
+        id="dashboardPendingNote"
+        style="display:none;"
+      >
+
+        <span aria-hidden="true">🚧</span>
+
+        <span>
+          Dashboard untuk role Anda sedang dalam pengembangan.
+          Sesi login Anda sudah aktif.
+        </span>
+
+      </div>
+
+
+      <a
+        href="index.html"
+        class="btn-primary btn-block"
+        style="margin-bottom:10px;justify-content:center;"
+      >
+        Ke Beranda
+      </a>
+
+
+      <button
+        type="button"
+        class="btn-secondary btn-block"
+        id="logoutBtn"
+      >
+        Keluar dari Akun
+      </button>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- =============================================================
+     FIREBASE LOGIN MODULE
+============================================================== -->
+
+<script>
+  /*
+   * Penanda bahwa module Firebase belum selesai dimuat.
+   * Dipakai hanya untuk mendeteksi kegagalan module.
+   */
+  window.__loginModuleLoaded = false;
+</script>
+
+
+<script type="module">
+
+  /*
+   * SEMUA IMPORT HARUS DI PALING ATAS MODULE.
+   */
+
+  import {
+    loginWithEmail,
+    translateAuthError,
+    getUserProfile,
+    ROLE_DASHBOARD,
+    ROLE_LABEL,
+    logout,
+    onAuthStateChanged,
+    logActivity
+  } from "./js/auth.js";
+
+
+  import {
+    auth,
+    setSessionOnlyPersistence,
+    setLocalPersistence
+  } from "./js/firebase-init.js";
+
+
+  import {
+    firebaseConfig
+  } from "./js/firebase-config.js";
+
+
+  /*
+   * Kalau sampai sini berarti seluruh module Firebase
+   * berhasil dimuat.
+   */
+
+  window.__loginModuleLoaded = true;
+  document.title = "LOGIN MODULE OK";
+
+  /*
+   * ============================================================
+   * ERROR MONITOR
+   * ============================================================
+   */
+
+  window.addEventListener("error", (event) => {
+
+    console.error(
+      "LOGIN ERROR:",
+      event.error || event.message
+    );
+
+  });
+
+
+  window.addEventListener("unhandledrejection", (event) => {
+
+    console.error(
+      "LOGIN PROMISE ERROR:",
+      event.reason
+    );
+
+  });
+
+
+  /*
+   * ============================================================
+   * ELEMENT
+   * ============================================================
+   */
+
+  const themeBtn =
+    document.getElementById("themeToggle");
+
+  const loginView =
+    document.getElementById("loginView");
+
+  const successView =
+    document.getElementById("successView");
+
+  const form =
+    document.getElementById("loginForm");
+
+  const errorBox =
+    document.getElementById("loginError");
+
+  const errorText =
+    document.getElementById("loginErrorText");
+
+  const submitBtn =
+    document.getElementById("loginSubmit");
+
+  const btnText =
+    document.getElementById("loginBtnText");
+
+  const togglePass =
+    document.getElementById("togglePass");
+
+  const passwordInput =
+    document.getElementById("password");
+
+  const logoutBtn =
+    document.getElementById("logoutBtn");
+
+
+  let loginInProgress = false;
+
+
+  /*
+   * ============================================================
+   * VALIDASI ELEMENT
+   * ============================================================
+   */
+
+  if (
+    !themeBtn ||
+    !loginView ||
+    !successView ||
+    !form ||
+    !errorBox ||
+    !errorText ||
+    !submitBtn ||
+    !btnText ||
+    !togglePass ||
+    !passwordInput ||
+    !logoutBtn
+  ) {
+
+    throw new Error(
+      "Komponen halaman login tidak lengkap."
+    );
+
+  }
+
+
+  /*
+   * ============================================================
+   * THEME
+   * ============================================================
+   */
+
+  themeBtn.addEventListener("click", () => {
+
+    const isDark =
+      document.body.getAttribute("data-theme") === "dark";
+
+    document.body.setAttribute(
+      "data-theme",
+      isDark ? "light" : "dark"
+    );
+
+    themeBtn.textContent =
+      isDark ? "🌙" : "☀️";
+
+  });
+
+
+  /*
+   * ============================================================
+   * SHOW / HIDE PASSWORD
+   * ============================================================
+   */
+
+  togglePass.addEventListener("click", () => {
+
+    const show =
+      passwordInput.type === "password";
+
+    passwordInput.type =
+      show ? "text" : "password";
+
+    togglePass.textContent =
+      show ? "🙈" : "👁️";
+
+    togglePass.setAttribute(
+      "aria-label",
+      show
+        ? "Sembunyikan kata sandi"
+        : "Tampilkan kata sandi"
+    );
+
+  });
+
+
+  /*
+   * ============================================================
+   * LOADING BUTTON
+   * ============================================================
+   */
+
+  function setLoading(loading) {
+
+    submitBtn.disabled = loading;
+
+    btnText.textContent =
+      loading
+        ? "Memproses…"
+        : "Masuk";
+
+
+    const oldSpinner =
+      document.getElementById("loginSpinner");
+
+    if (oldSpinner) {
+      oldSpinner.remove();
+    }
+
+
+    if (loading) {
+
+      submitBtn.insertAdjacentHTML(
+        "afterbegin",
+        '<span class="spinner" id="loginSpinner"></span>'
+      );
+
+    }
+
+  }
+
+
+  /*
+   * ============================================================
+   * ERROR
+   * ============================================================
+   */
+
+  function showError(message) {
+
+    errorText.textContent = message;
+
+    errorBox.style.display = "flex";
+
+  }
+
+
+  function hideError() {
+
+    errorBox.style.display = "none";
+
+    errorText.textContent = "";
+
+  }
+
+
+  /*
+   * ============================================================
+   * SUCCESS
+   * ============================================================
+   */
+
+  function showSuccess(profile) {
+
+    loginView.style.display = "none";
+
+    successView.style.display = "block";
+
+
+    const role =
+      profile?.role;
+
+    const roleLabel =
+      ROLE_LABEL[role] || "Pengguna";
+
+
+    document.getElementById(
+      "successTitle"
+    ).textContent =
+      `Selamat datang, ${profile?.name || roleLabel}`;
+
+
+    document.getElementById(
+      "successSub"
+    ).textContent =
+      `Anda masuk sebagai ${roleLabel}.`;
+
+
+    const params =
+      new URLSearchParams(location.search);
+
+
+    const redirectTarget =
+      ROLE_DASHBOARD[role];
+
+
+    if (!redirectTarget) {
+
+      document.getElementById(
+        "dashboardPendingNote"
+      ).style.display = "flex";
+
+      return;
+
+    }
+
+
+    /*
+     * Pastikan dashboard benar-benar tersedia
+     * sebelum melakukan redirect.
+     */
+
+    fetch(
+      redirectTarget,
+      {
+        method: "HEAD",
+        cache: "no-store"
+      }
+    )
+
+      .then((res) => {
+
+        if (!res.ok) {
+
+          document.getElementById(
+            "dashboardPendingNote"
+          ).style.display = "flex";
+
+          return;
+
+        }
+
+
+        const requestedRedirect =
+          params.get("redirect");
+
+
+        /*
+         * Hanya izinkan redirect relatif
+         * agar tidak diarahkan ke website asing.
+         */
+
+        let target =
+          redirectTarget;
+
+
+        if (
+          requestedRedirect &&
+          requestedRedirect.startsWith("/") &&
+          !requestedRedirect.startsWith("//")
+        ) {
+
+          target =
+            requestedRedirect;
+
+        }
+
+
+        location.replace(target);
+
+      })
+
+      .catch(() => {
+
+        document.getElementById(
+          "dashboardPendingNote"
+        ).style.display = "flex";
+
+      });
+
+  }
+
+
+  /*
+   * ============================================================
+   * LOGIN
+   * ============================================================
+   */
+
+  form.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+      if (loginInProgress) {
+        return;
+      }
+
+
+      loginInProgress = true;
+
+      hideError();
+
+      setLoading(true);
+
+
+      const loginInput =
+        document.getElementById("email");
+
+
+      const loginValue =
+        loginInput.value
+          .trim()
+          .toLowerCase();
+
+
+      const password =
+        passwordInput.value;
+
+
+      const remember =
+        document.getElementById("rememberMe").checked;
+
+
+      if (!loginValue) {
+
+        showError(
+          "Email atau username wajib diisi."
+        );
+
+        setLoading(false);
+
+        loginInProgress = false;
+
+        return;
+
+      }
+
+
+      if (!password) {
+
+        showError(
+          "Kata sandi wajib diisi."
+        );
+
+        setLoading(false);
+
+        loginInProgress = false;
+
+        return;
+
+      }
+
+
+      /*
+       * Username:
+       *
+       * budi
+       *
+       * menjadi:
+       *
+       * budi@app.local
+       *
+       * Kalau user memasukkan email lengkap,
+       * email digunakan apa adanya.
+       */
+
+      const domain =
+        String(
+          firebaseConfig.loginEmailDomain ||
+          "app.local"
+        )
+          .trim()
+          .toLowerCase()
+          .replace(/^@+/, "");
+
+
+      const email =
+        loginValue.includes("@")
+          ? loginValue
+          : `${loginValue}@${domain}`;
+
+
+      try {
+
+        /*
+         * Pastikan Firebase dikonfigurasi.
+         */
+
+        if (
+          !firebaseConfig.projectId ||
+          firebaseConfig.projectId.includes(
+            "GANTI_DENGAN"
+          )
+        ) {
+
+          throw Object.assign(
+            new Error(
+              "Firebase belum dikonfigurasi."
+            ),
+            {
+              code: "config/missing"
+            }
+          );
+
+        }
+
+
+        /*
+         * Persistence.
+         */
+
+        if (remember) {
+
+          await setLocalPersistence();
+
+        } else {
+
+          await setSessionOnlyPersistence();
+
+        }
+
+
+        /*
+         * LOGIN FIREBASE AUTH
+         */
+
+        const user =
+          await loginWithEmail(
+            email,
+            password
+          );
+
+
+        /*
+         * AMBIL PROFIL FIRESTORE
+         */
+
+        const profile =
+          await getUserProfile(
+            user.uid
+          );
+
+
+        /*
+         * Tidak ada dokumen users/{UID}.
+         */
+
+        if (!profile) {
+
+          await logout();
+
+          showError(
+            "Akun Firebase ditemukan, tetapi profil pengguna belum terdaftar di sistem. Hubungi Admin sekolah."
+          );
+
+          return;
+
+        }
+
+
+        /*
+         * Pendaftaran mandiri yang belum di-ACC Admin (lihat daftar.html).
+         * Dicek SEBELUM pengecekan disabled umum, karena akun pending juga
+         * disabled:true tapi pesannya harus terasa berbeda (bukan ditolak/
+         * dinonaktifkan, hanya belum diproses).
+         */
+
+        if (profile.status === "pending") {
+
+          await logout();
+
+          showError(
+            "Pendaftaran Anda sedang menunggu persetujuan (ACC) Admin sekolah. Silakan coba masuk lagi nanti."
+          );
+
+          return;
+
+        }
+
+
+        /*
+         * Akun dinonaktifkan.
+         */
+
+        if (profile.disabled) {
+
+          await logout();
+
+          showError(
+            "Akun ini telah dinonaktifkan. Hubungi Tata Usaha/Admin sekolah."
+          );
+
+          return;
+
+        }
+
+
+        /*
+         * LOGIN BERHASIL
+         */
+
+        showSuccess(profile);
+
+
+        /*
+         * Logging tidak boleh menggagalkan login.
+         */
+
+        await logActivity(
+          user,
+          profile,
+          "login",
+          "Berhasil masuk ke portal internal"
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Login gagal:",
+          error
+        );
+
+
+        /*
+         * Jangan pernah memasukkan password
+         * ke URL atau pesan error.
+         */
+
+        showError(
+          translateAuthError(
+            error?.code
+          )
+        );
+
+      } finally {
+
+        setLoading(false);
+
+        loginInProgress = false;
+
+      }
+
+    }
+  );
+
+
+  /*
+   * ============================================================
+   * LOGOUT
+   * ============================================================
+   */
+
+  logoutBtn.addEventListener(
+    "click",
+    async () => {
+
+      try {
+
+        await logout();
+
+      } catch (error) {
+
+        console.error(
+          "Logout gagal:",
+          error
+        );
+
+      }
+
+
+      successView.style.display = "none";
+
+      loginView.style.display = "block";
+
+      form.reset();
+
+      hideError();
+
+    }
+  );
+
+
+  /*
+   * ============================================================
+   * CEK SESSION YANG SUDAH ADA
+   * ============================================================
+   */
+
+  onAuthStateChanged(
+    auth,
+    async (user) => {
+
+      /*
+       * Jangan ganggu proses login yang sedang berjalan.
+       */
+
+      if (!user || loginInProgress) {
+        return;
+      }
+
+
+      try {
+
+        const profile =
+          await getUserProfile(
+            user.uid
+          );
+
+
+        if (
+          profile &&
+          !profile.disabled
+        ) {
+
+          showSuccess(profile);
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Gagal memuat profil sesi:",
+          error
+        );
+
+      }
+
+    }
+  );
+
+</script>
+
+
+<!-- =============================================================
+     MODULE WATCHDOG
+============================================================== -->
+
+<script>
+
+  setTimeout(() => {
+
+    if (
+      !window.__loginModuleLoaded
+    ) {
+
+      const box =
+        document.getElementById(
+          "loginError"
+        );
+
+      const text =
+        document.getElementById(
+          "loginErrorText"
+        );
+
+
+      if (box && text) {
+
+        text.textContent =
+          "Modul login gagal dimuat. Silakan muat ulang halaman dan periksa Console browser untuk detail error.";
+
+        box.style.display = "flex";
+
+      }
+
+    }
+
+  }, 5000);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Absensi QR — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Pindai QR absensi siswa untuk mencatat kehadiran secara otomatis.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-guru.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Absensi QR</div>
+      <div class="tag">Pindai kartu QR siswa</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a href="absensi-rekap.html" class="icon-btn" aria-label="Buka rekap absensi" style="text-decoration:none;">📊</a>
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+
+  <div class="att-toolbar">
+    <div id="classChips" class="staff-filters" role="tablist" aria-label="Pilih kelas"></div>
+    <div class="att-toolbar-row">
+      <input type="date" id="scanDate" class="att-date-input" aria-label="Tanggal absensi">
+    </div>
+  </div>
+
+  <button type="button" class="btn-primary btn-block" id="startScanBtn" style="margin-bottom:14px;">📷 Mulai Pindai</button>
+
+  <div class="att-scan-box" id="scanBoxWrap" style="display:none;">
+    <div id="attQrReader"></div>
+  </div>
+
+  <div class="att-scan-result" id="scanResult" style="display:none;"></div>
+
+  <section class="dash-section">
+    <div class="dash-section-head">
+      <h2>✅ Baru Dipindai</h2>
+      <span id="feedCount" style="font-size:12px;color:var(--text-soft);">0 siswa</span>
+    </div>
+    <div class="card-surface" style="padding:4px 14px;">
+      <div id="scanFeed"></div>
+    </div>
+  </section>
+
+  <p style="font-size:11.5px;color:var(--text-soft);text-align:center;line-height:1.6;">
+    Untuk mencatat Izin/Sakit/Alpa atau mengoreksi hasil pindai, gunakan
+    <a href="absensi-rekap.html">halaman Rekap Absensi</a>.
+  </p>
+
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi portal guru">
+  <a class="bn-item" href="dashboard-guru.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="kelas-jadwal.html"><span class="bn-icon">📘</span>Kelas</a>
+  <a class="bn-item" href="manajemen-cbt-hasil.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item" href="bank-soal.html"><span class="bn-icon">🗂️</span>Bank Soal</a>
+  <a class="bn-item" href="dashboard-guru.html#profileCard"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initAbsensiScan } from "./js/absensi-scan.js";
+  initAbsensiScan();
+</script>
+</body>
+</html>

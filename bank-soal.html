@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Bank Soal — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Kelola bank soal: tambah, edit, dan hapus soal untuk ujian CBT.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-guru.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Bank Soal</div>
+      <div class="tag" id="totalLabel">—</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+  <div class="dash-greeting">
+    <h1 style="font-size:16px;">🗂️ Soal Saya</h1>
+    <p>Kelola soal pilihan ganda untuk ujian CBT Anda.</p>
+  </div>
+
+  <div class="qb-toolbar">
+    <div class="staff-search">
+      <span aria-hidden="true">🔍</span>
+      <input type="search" id="qbSearch" placeholder="Cari teks soal…" aria-label="Cari soal">
+    </div>
+    <div id="subjectChips" class="staff-filters" role="tablist" aria-label="Filter mata pelajaran"></div>
+  </div>
+
+  <div id="qbList" class="list-grid"></div>
+</main>
+
+<button type="button" class="fab" id="addBtn">
+  <span aria-hidden="true">➕</span> Tambah Soal
+</button>
+
+<nav class="bottom-nav" aria-label="Navigasi portal guru">
+  <a class="bn-item" href="dashboard-guru.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="kelas-jadwal.html"><span class="bn-icon">📘</span>Kelas</a>
+  <a class="bn-item" href="manajemen-cbt-hasil.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item active" href="bank-soal.html"><span class="bn-icon">🗂️</span>Bank Soal</a>
+  <a class="bn-item" href="dashboard-guru.html#profileCard"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<!-- Bottom sheet: form tambah/edit soal -->
+<div class="sheet-overlay" id="sheetOverlay">
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheetTitle">Tambah Soal</h2>
+      <button type="button" class="icon-btn" id="sheetCloseBtn" aria-label="Tutup" style="color:var(--text);">✕</button>
+    </div>
+
+    <div class="auth-alert error" id="formError" style="display:none;" role="alert">
+      <span aria-hidden="true">⚠️</span>
+      <span id="formErrorText"></span>
+    </div>
+
+    <form id="qbForm" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="fSubject">Mata Pelajaran</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">📘</span>
+          <input type="text" id="fSubject" list="subjectSuggestions" placeholder="mis. Matematika" required>
+        </div>
+        <datalist id="subjectSuggestions"></datalist>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fCategory">Kategori / Materi (opsional)</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">🏷️</span>
+          <input type="text" id="fCategory" placeholder="mis. Aljabar">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fDifficulty">Tingkat Kesulitan</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">📊</span>
+          <select id="fDifficulty" required>
+            <option value="mudah">Mudah</option>
+            <option value="sedang" selected>Sedang</option>
+            <option value="sulit">Sulit</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fPoints">Poin</label>
+        <div class="form-input-wrap">
+          <span aria-hidden="true">⭐</span>
+          <input type="number" id="fPoints" min="1" max="100" value="10" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fText">Pertanyaan</label>
+        <div class="form-input-wrap align-top">
+          <span aria-hidden="true">❓</span>
+          <textarea id="fText" rows="3" placeholder="Tulis pertanyaan di sini…" required></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-check">
+          <input type="checkbox" id="fMultiple">
+          Soal ini punya lebih dari satu jawaban benar
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Pilihan Jawaban</label>
+        <div class="form-hint" id="optionHint">Tandai satu lingkaran di samping pilihan yang benar.</div>
+        <div id="optionRows"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fExplanation">Pembahasan (opsional)</label>
+        <div class="form-input-wrap align-top">
+          <span aria-hidden="true">💡</span>
+          <textarea id="fExplanation" rows="2" placeholder="Penjelasan jawaban, ditampilkan setelah ujian dinilai…"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary btn-block" id="submitBtn">
+        <span id="submitBtnText">Simpan Soal</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Dialog konfirmasi hapus -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="es-icon" aria-hidden="true">🗑️</div>
+    <h3>Hapus soal ini?</h3>
+    <p>Soal yang sudah dihapus tidak dapat dikembalikan. Soal yang sedang dipakai di ujian aktif sebaiknya tidak dihapus.</p>
+    <div class="confirm-actions">
+      <button type="button" class="btn-secondary" id="confirmCancelBtn">Batal</button>
+      <button type="button" class="btn-danger" id="confirmDeleteBtn">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initBankSoal } from "./js/bank-soal.js";
+  initBankSoal();
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Dashboard Guru — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Dashboard guru: kelas yang diajar, jadwal hari ini, ujian CBT aktif, bank soal, tugas online, dan pengumuman.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <div class="brand">
+    <div class="crest" aria-hidden="true"><img src="assets/logo-sman1-gebog.png" alt="Logo SMA Negeri 1 Gebog" width="40" height="40"></div>
+    <div class="brand-text">
+      <div class="name">SMA NEGERI 1 GEBOG</div>
+      <div class="tag">Portal Guru</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+
+  <!-- Greeting -->
+  <div class="dash-greeting">
+    <h1 id="greetingName">Halo! 👋</h1>
+    <p id="greetingSub">—</p>
+  </div>
+
+  <!-- Profil singkat -->
+  <div class="profile-card" id="profileCard">
+    <div class="staff-photo" id="profileAvatar" aria-hidden="true">?</div>
+    <div class="profile-card-body">
+      <h2 id="profileName">—</h2>
+      <div class="profile-card-meta">
+        <span id="profileMetaSubject">—</span>
+        <span>·</span>
+        <span id="profileMetaNip">—</span>
+      </div>
+    </div>
+    <span class="role-badge" id="roleBadge">Guru</span>
+  </div>
+
+  <!-- Quick access -->
+  <nav class="dash-quick" aria-label="Akses cepat portal guru">
+    <a href="kelas-jadwal.html">
+      <span class="qa-icon" style="width:38px;height:38px;border-radius:50%;background:var(--blue-100);color:var(--blue-600);display:flex;align-items:center;justify-content:center;">📘</span>
+      <span>Kelas</span>
+    </a>
+    <a href="manajemen-cbt-hasil.html">
+      <span class="qa-icon" style="width:38px;height:38px;border-radius:50%;background:var(--blue-100);color:var(--blue-600);display:flex;align-items:center;justify-content:center;">📝</span>
+      <span>CBT</span>
+    </a>
+    <a href="bank-soal.html">
+      <span class="qa-icon" style="width:38px;height:38px;border-radius:50%;background:var(--blue-100);color:var(--blue-600);display:flex;align-items:center;justify-content:center;">🗂️</span>
+      <span>Bank Soal</span>
+    </a>
+    <a href="#announcementSection">
+      <span class="qa-icon" style="width:38px;height:38px;border-radius:50%;background:var(--blue-100);color:var(--blue-600);display:flex;align-items:center;justify-content:center;">📣</span>
+      <span>Pengumuman</span>
+    </a>
+    <a href="absensi-scan.html">
+      <span class="qa-icon" style="width:38px;height:38px;border-radius:50%;background:var(--blue-100);color:var(--blue-600);display:flex;align-items:center;justify-content:center;">📷</span>
+      <span>Absensi</span>
+    </a>
+    <a href="tugas-guru.html">
+      <span class="qa-icon" style="width:38px;height:38px;border-radius:50%;background:var(--blue-100);color:var(--blue-600);display:flex;align-items:center;justify-content:center;">📚</span>
+      <span>Tugas</span>
+    </a>
+  </nav>
+
+  <!-- Kelas yang diajar -->
+  <section class="dash-section" id="classSection">
+    <div class="dash-section-head">
+      <h2>📘 Kelas yang Saya Ajar</h2>
+      <a href="kelas-jadwal.html">Lihat semua</a>
+    </div>
+    <div class="card-surface" style="padding:4px 14px;">
+      <div id="classList"></div>
+    </div>
+  </section>
+
+  <!-- Jadwal hari ini -->
+  <section class="dash-section" id="jadwalSection">
+    <div class="dash-section-head">
+      <h2>🕒 Jadwal Mengajar Hari Ini</h2>
+      <a href="kelas-jadwal.html">Lihat semua</a>
+    </div>
+    <div class="card-surface" style="padding:4px 14px;">
+      <div id="scheduleList"></div>
+    </div>
+  </section>
+
+  <!-- Ujian CBT aktif -->
+  <section class="dash-section" id="examSection">
+    <div class="dash-section-head">
+      <h2>📝 Ujian CBT Saya</h2>
+      <a href="manajemen-cbt-hasil.html">Lihat semua</a>
+    </div>
+    <div class="card-surface" style="padding:4px 14px;">
+      <div id="examList"></div>
+    </div>
+  </section>
+
+  <!-- Bank soal -->
+  <section class="dash-section" id="bankSection">
+    <div class="dash-section-head">
+      <h2>🗂️ Bank Soal Saya</h2>
+      <a href="bank-soal.html">Kelola</a>
+    </div>
+    <div class="card-surface" style="padding:4px 14px;">
+      <div id="bankSummary"></div>
+    </div>
+  </section>
+
+  <!-- Tugas Online -->
+  <section class="dash-section" id="tugasSection">
+    <div class="dash-section-head">
+      <h2>📚 Tugas Saya</h2>
+      <a href="tugas-guru.html">Lihat semua</a>
+    </div>
+    <div class="card-surface" style="padding:4px 14px;">
+      <div id="tugasSummary"></div>
+    </div>
+  </section>
+
+  <!-- Absensi QR -->
+  <section class="dash-section" id="attendanceSection">
+    <div class="dash-section-head">
+      <h2>📷 Absensi QR</h2>
+      <a href="absensi-rekap.html">Rekap</a>
+    </div>
+    <div class="card-surface" style="padding:14px;">
+      <p style="font-size:12.5px;color:var(--text-soft);margin:0 0 10px;">Pindai kartu QR siswa untuk mencatat kehadiran otomatis, atau isi Izin/Sakit/Alpa secara manual lewat halaman Rekap.</p>
+      <a href="absensi-scan.html" class="btn-primary btn-block">📷 Mulai Pindai Absensi</a>
+    </div>
+  </section>
+
+  <!-- Pengumuman terbaru -->
+  <section class="dash-section" id="announcementSection">
+    <div class="dash-section-head">
+      <h2>📣 Pengumuman Terbaru</h2>
+    </div>
+    <div class="card-surface" style="padding:4px 14px;">
+      <div id="announcementList"></div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi portal guru">
+  <a class="bn-item active" href="#main"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="kelas-jadwal.html"><span class="bn-icon">📘</span>Kelas</a>
+  <a class="bn-item" href="manajemen-cbt-hasil.html"><span class="bn-icon">📝</span>CBT</a>
+  <a class="bn-item" href="bank-soal.html"><span class="bn-icon">🗂️</span>Bank Soal</a>
+  <a class="bn-item" href="#profileCard"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+  // Theme toggle (halaman portal punya header minim, tidak pakai main.js penuh —
+  // sama seperti pola di dashboard-siswa.html).
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initDashboardGuru } from "./js/dashboard-guru.js";
+  initDashboardGuru();
+</script>
+</body>
+</html>

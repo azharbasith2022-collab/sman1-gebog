@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Informasi & Administrasi — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Kelola pengumuman, agenda, dan dokumen administrasi sekolah.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="dashboard-tu.html" class="icon-btn" aria-label="Kembali ke dashboard" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Informasi & Administrasi</div>
+      <div class="tag" id="totalLabel">—</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+  <div class="dash-greeting">
+    <h1 style="font-size:16px;">🗄️ Kelola Informasi & Administrasi</h1>
+    <p>Pengumuman, agenda, dan dokumen administrasi sekolah.</p>
+  </div>
+
+  <div id="tabChips" class="staff-filters" role="tablist" aria-label="Pilih data yang dikelola" style="margin-bottom:16px;">
+    <button type="button" class="filter-chip active" data-tab="pengumuman" role="tab" aria-selected="true">📣 Pengumuman</button>
+    <button type="button" class="filter-chip" data-tab="agenda" role="tab" aria-selected="false">📅 Agenda</button>
+    <button type="button" class="filter-chip" data-tab="dokumen" role="tab" aria-selected="false">🗄️ Dokumen</button>
+  </div>
+
+  <section id="panel-pengumuman" class="tab-panel">
+    <div id="pengumumanList" class="list-grid"></div>
+  </section>
+
+  <section id="panel-agenda" class="tab-panel" style="display:none;">
+    <div id="agendaList" class="list-grid"></div>
+  </section>
+
+  <section id="panel-dokumen" class="tab-panel" style="display:none;">
+    <div id="dokumenList" class="list-grid"></div>
+  </section>
+</main>
+
+<button type="button" class="fab" id="addBtn">
+  <span aria-hidden="true">➕</span> Tambah
+</button>
+
+<nav class="bottom-nav" aria-label="Navigasi portal Tata Usaha">
+  <a class="bn-item" href="dashboard-tu.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item active" href="manajemen-informasi-administrasi.html"><span class="bn-icon">🗄️</span>Administrasi</a>
+  <a class="bn-item" href="pengumuman.html"><span class="bn-icon">📣</span>Pengumuman</a>
+  <a class="bn-item" href="agenda.html"><span class="bn-icon">📅</span>Agenda</a>
+  <a class="bn-item" href="dashboard-tu.html#profileCard"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<!-- Bottom sheet: form pengumuman -->
+<div class="sheet-overlay" id="sheetPengumuman">
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetPengumumanTitle">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheetPengumumanTitle">Tambah Pengumuman</h2>
+      <button type="button" class="icon-btn sheet-close" data-sheet="sheetPengumuman" aria-label="Tutup" style="color:var(--text);">✕</button>
+    </div>
+    <div class="auth-alert error" id="errPengumuman" style="display:none;" role="alert">
+      <span aria-hidden="true">⚠️</span><span></span>
+    </div>
+    <form id="formPengumuman" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="pTitle">Judul</label>
+        <div class="form-input-wrap"><span aria-hidden="true">📝</span>
+          <input type="text" id="pTitle" placeholder="mis. Jadwal Pembagian Rapor" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="pCategory">Kategori</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🏷️</span>
+          <input type="text" id="pCategory" list="pengumumanCategorySuggestions" placeholder="mis. Akademik">
+        </div>
+        <datalist id="pengumumanCategorySuggestions"></datalist>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="pDetail">Detail</label>
+        <div class="form-input-wrap align-top"><span aria-hidden="true">📄</span>
+          <textarea id="pDetail" rows="4" placeholder="Isi lengkap pengumuman"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-check"><input type="checkbox" id="pUrgent"> Tandai sebagai penting</label>
+      </div>
+      <div class="form-group">
+        <label class="form-check"><input type="checkbox" id="pPublished" checked> Publikasikan sekarang</label>
+      </div>
+      <button type="submit" class="btn-primary btn-block" id="submitPengumuman">
+        <span>Simpan Pengumuman</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Bottom sheet: form agenda -->
+<div class="sheet-overlay" id="sheetAgenda">
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetAgendaTitle">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheetAgendaTitle">Tambah Agenda</h2>
+      <button type="button" class="icon-btn sheet-close" data-sheet="sheetAgenda" aria-label="Tutup" style="color:var(--text);">✕</button>
+    </div>
+    <div class="auth-alert error" id="errAgenda" style="display:none;" role="alert">
+      <span aria-hidden="true">⚠️</span><span></span>
+    </div>
+    <form id="formAgenda" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="aTitle">Nama Kegiatan</label>
+        <div class="form-input-wrap"><span aria-hidden="true">📅</span>
+          <input type="text" id="aTitle" placeholder="mis. Rapat Wali Murid Kelas X" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="aCategory">Kategori</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🏷️</span>
+          <input type="text" id="aCategory" list="agendaCategorySuggestions" placeholder="mis. Rapat">
+        </div>
+        <datalist id="agendaCategorySuggestions"></datalist>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="aDate">Tanggal & Waktu</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🕒</span>
+          <input type="datetime-local" id="aDate" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="aLocation">Lokasi</label>
+        <div class="form-input-wrap"><span aria-hidden="true">📍</span>
+          <input type="text" id="aLocation" placeholder="mis. Aula Sekolah">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="aDesc">Deskripsi</label>
+        <div class="form-input-wrap align-top"><span aria-hidden="true">📄</span>
+          <textarea id="aDesc" rows="3" placeholder="Deskripsi kegiatan"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary btn-block" id="submitAgenda">
+        <span>Simpan Agenda</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Bottom sheet: form dokumen administrasi -->
+<div class="sheet-overlay" id="sheetDokumen">
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetDokumenTitle">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheetDokumenTitle">Tambah Dokumen</h2>
+      <button type="button" class="icon-btn sheet-close" data-sheet="sheetDokumen" aria-label="Tutup" style="color:var(--text);">✕</button>
+    </div>
+    <div class="auth-alert error" id="errDokumen" style="display:none;" role="alert">
+      <span aria-hidden="true">⚠️</span><span></span>
+    </div>
+    <div class="auth-alert success">
+      <span aria-hidden="true">ℹ️</span>
+      <span>Untuk menjaga sistem tetap gratis, dokumen dicatat sebagai judul + tautan (mis. Google Drive/Sheets yang sudah dibagikan), bukan unggah berkas langsung.</span>
+    </div>
+    <form id="formDokumen" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="dTitle">Judul Dokumen</label>
+        <div class="form-input-wrap"><span aria-hidden="true">📄</span>
+          <input type="text" id="dTitle" placeholder="mis. Rekap Surat Masuk September" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="dCategory">Kategori</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🏷️</span>
+          <input type="text" id="dCategory" list="dokumenCategorySuggestions" placeholder="mis. Surat Menyurat">
+        </div>
+        <datalist id="dokumenCategorySuggestions"></datalist>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="dLink">Tautan (opsional)</label>
+        <div class="form-input-wrap"><span aria-hidden="true">🔗</span>
+          <input type="url" id="dLink" placeholder="https://...">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="dDesc">Catatan</label>
+        <div class="form-input-wrap align-top"><span aria-hidden="true">📝</span>
+          <textarea id="dDesc" rows="3" placeholder="Catatan atau ringkasan dokumen"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary btn-block" id="submitDokumen">
+        <span>Simpan Dokumen</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Dialog konfirmasi hapus -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="es-icon" aria-hidden="true">🗑️</div>
+    <h3>Hapus data ini?</h3>
+    <p>Data yang sudah dihapus tidak dapat dikembalikan.</p>
+    <div class="confirm-actions">
+      <button type="button" class="btn-secondary" id="confirmCancelBtn">Batal</button>
+      <button type="button" class="btn-danger" id="confirmDeleteBtn">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initManajemenInformasiAdministrasi } from "./js/manajemen-informasi-administrasi.js";
+  initManajemenInformasiAdministrasi();
+</script>
+</body>
+</html>

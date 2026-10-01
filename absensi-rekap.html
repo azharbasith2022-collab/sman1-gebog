@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Rekap Absensi — Portal SMA Negeri 1 Gebog</title>
+<meta name="description" content="Rekap absensi per kelas, isi Izin/Sakit/Alpa manual, dan ekspor ke Excel/PDF.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body data-theme="light">
+<a href="#main" class="skip-link">Lompat ke konten utama</a>
+
+<header class="portal-header">
+  <a href="absensi-scan.html" class="icon-btn" aria-label="Kembali ke pemindai" style="text-decoration:none;">←</a>
+  <div class="brand">
+    <div class="brand-text">
+      <div class="name">Rekap Absensi</div>
+      <div class="tag">Per kelas · harian & bulanan</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Ganti tema gelap/terang">🌙</button>
+    <button class="icon-btn" id="logoutBtn" aria-label="Keluar dari akun">🚪</button>
+  </div>
+</header>
+
+<main id="main" class="portal-main">
+
+  <div id="classChips" class="staff-filters" role="tablist" aria-label="Pilih kelas" style="margin-bottom:12px;"></div>
+
+  <div class="att-mode-tabs" role="tablist" aria-label="Mode rekap" style="margin-bottom:14px;">
+    <button type="button" class="active" data-mode="harian">Harian</button>
+    <button type="button" data-mode="bulanan">Bulanan</button>
+  </div>
+
+  <div id="harianPanel">
+    <div class="att-toolbar-row" style="margin-bottom:14px;">
+      <input type="date" id="harianDate" class="att-date-input" aria-label="Tanggal">
+    </div>
+  </div>
+  <div id="bulananPanel" style="display:none;">
+    <div class="att-toolbar-row" style="margin-bottom:14px;">
+      <input type="month" id="bulananMonth" class="att-date-input" aria-label="Bulan">
+    </div>
+  </div>
+
+  <div class="att-summary" id="rekapSummary"></div>
+
+  <div class="att-export-row">
+    <button type="button" class="btn-secondary" id="exportExcelBtn">📊 Excel</button>
+    <button type="button" class="btn-secondary" id="exportPdfBtn">📄 PDF</button>
+  </div>
+
+  <div id="harianContent">
+    <section class="dash-section">
+      <div class="dash-section-head">
+        <h2>🎓 Daftar Siswa</h2>
+      </div>
+      <div class="card-surface" style="padding:4px 14px;">
+        <div id="rosterList"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="rekapTableWrap" class="card-surface" style="padding:10px;display:none;"></div>
+
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi portal guru">
+  <a class="bn-item" href="dashboard-guru.html"><span class="bn-icon">🏠</span>Beranda</a>
+  <a class="bn-item" href="kelas-jadwal.html"><span class="bn-icon">📘</span>Kelas</a>
+  <a class="bn-item" href="absensi-scan.html"><span class="bn-icon">📷</span>Absensi</a>
+  <a class="bn-item" href="bank-soal.html"><span class="bn-icon">🗂️</span>Bank Soal</a>
+  <a class="bn-item" href="dashboard-guru.html#profileCard"><span class="bn-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn.addEventListener("click", () => {
+    const isDark = document.body.getAttribute("data-theme") === "dark";
+    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+    themeBtn.textContent = isDark ? "🌙" : "☀️";
+  });
+</script>
+<script type="module">
+  import { initAbsensiRekap } from "./js/absensi-rekap.js";
+  initAbsensiRekap();
+</script>
+</body>
+</html>
