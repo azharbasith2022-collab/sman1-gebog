@@ -93,7 +93,13 @@
           <label class="form-label" for="dName">Nama Lengkap</label>
           <div class="form-input-wrap">
             <span aria-hidden="true">🧑</span>
-            <input type="text" id="dName" required placeholder="mis. Ahmad Fauzi" autocomplete="name">
+            <input
+              type="text"
+              id="dName"
+              required
+              placeholder="mis. Ahmad Fauzi"
+              autocomplete="name"
+            >
           </div>
         </div>
 
@@ -101,16 +107,29 @@
           <label class="form-label" for="dEmail">Email</label>
           <div class="form-input-wrap">
             <span aria-hidden="true">📧</span>
-            <input type="email" id="dEmail" required placeholder="email aktif Anda" autocomplete="username">
+            <input
+              type="email"
+              id="dEmail"
+              required
+              placeholder="email aktif Anda"
+              autocomplete="username"
+            >
           </div>
-          <div class="form-hint">Dipakai untuk masuk (login) setelah akun disetujui Admin.</div>
+          <div class="form-hint">
+            Dipakai untuk masuk (login) setelah akun disetujui Admin.
+          </div>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="dPhone">Telepon (opsional)</label>
           <div class="form-input-wrap">
             <span aria-hidden="true">📱</span>
-            <input type="text" id="dPhone" placeholder="mis. 08123456789" autocomplete="tel">
+            <input
+              type="text"
+              id="dPhone"
+              placeholder="mis. 08123456789"
+              autocomplete="tel"
+            >
           </div>
         </div>
 
@@ -118,7 +137,12 @@
           <label class="form-label" for="dClassId">Kelas</label>
           <div class="form-input-wrap">
             <span aria-hidden="true">🏫</span>
-            <input type="text" id="dClassId" required placeholder="mis. XII IPA 1">
+            <input
+              type="text"
+              id="dClassId"
+              required
+              placeholder="mis. XII IPA 1"
+            >
           </div>
         </div>
 
@@ -126,7 +150,12 @@
           <label class="form-label" for="dNis">NIS</label>
           <div class="form-input-wrap">
             <span aria-hidden="true">🪪</span>
-            <input type="text" id="dNis" required placeholder="mis. 22110045">
+            <input
+              type="text"
+              id="dNis"
+              required
+              placeholder="mis. 22110045"
+            >
           </div>
         </div>
 
@@ -134,7 +163,12 @@
           <label class="form-label" for="dNisn">NISN</label>
           <div class="form-input-wrap">
             <span aria-hidden="true">🪪</span>
-            <input type="text" id="dNisn" required placeholder="mis. 0051234567">
+            <input
+              type="text"
+              id="dNisn"
+              required
+              placeholder="mis. 0051234567"
+            >
           </div>
         </div>
 
@@ -142,8 +176,21 @@
           <label class="form-label" for="dPassword">Kata Sandi</label>
           <div class="form-input-wrap">
             <span aria-hidden="true">🔒</span>
-            <input type="password" id="dPassword" required placeholder="Minimal 6 karakter" autocomplete="new-password">
-            <button type="button" class="toggle-pass" id="toggleDPass" aria-label="Tampilkan kata sandi">👁️</button>
+            <input
+              type="password"
+              id="dPassword"
+              required
+              placeholder="Minimal 6 karakter"
+              autocomplete="new-password"
+            >
+            <button
+              type="button"
+              class="toggle-pass"
+              id="toggleDPass"
+              aria-label="Tampilkan kata sandi"
+            >
+              👁️
+            </button>
           </div>
         </div>
 
@@ -151,16 +198,30 @@
           <label class="form-label" for="dPassword2">Ulangi Kata Sandi</label>
           <div class="form-input-wrap">
             <span aria-hidden="true">🔒</span>
-            <input type="password" id="dPassword2" required placeholder="Ketik ulang kata sandi" autocomplete="new-password">
+            <input
+              type="password"
+              id="dPassword2"
+              required
+              placeholder="Ketik ulang kata sandi"
+              autocomplete="new-password"
+            >
           </div>
         </div>
 
-        <button type="submit" class="btn-primary btn-block" id="daftarSubmit">
+        <button
+          type="submit"
+          class="btn-primary btn-block"
+          id="daftarSubmit"
+        >
           <span id="daftarBtnText">Daftar</span>
         </button>
 
         <noscript>
-          <div class="auth-alert error" style="display:flex;margin-top:12px;" role="alert">
+          <div
+            class="auth-alert error"
+            style="display:flex;margin-top:12px;"
+            role="alert"
+          >
             JavaScript harus diaktifkan untuk mendaftar.
           </div>
         </noscript>
@@ -170,7 +231,8 @@
       <div class="auth-role-note">
         <span aria-hidden="true">ℹ️</span>
         <span>
-          Sudah punya akun? <a href="login.html" class="auth-link">Masuk di sini</a>.
+          Sudah punya akun?
+          <a href="login.html" class="auth-link">Masuk di sini</a>.
           Pendaftaran Guru/Tata Usaha/Admin dibuat langsung oleh Admin sekolah.
         </span>
       </div>
@@ -196,10 +258,17 @@
 
       <div class="auth-alert success" style="display:flex;">
         <span aria-hidden="true">✅</span>
-        <span>Belum perlu melakukan apa pun lagi — cukup coba masuk beberapa saat lagi setelah dihubungi/diberi tahu Admin.</span>
+        <span>
+          Belum perlu melakukan apa pun lagi — cukup coba masuk beberapa saat
+          lagi setelah dihubungi/diberi tahu Admin.
+        </span>
       </div>
 
-      <a href="login.html" class="btn-primary btn-block" style="margin-top:14px;justify-content:center;">
+      <a
+        href="login.html"
+        class="btn-primary btn-block"
+        style="margin-top:14px;justify-content:center;"
+      >
         Ke Halaman Masuk
       </a>
 
@@ -217,126 +286,437 @@
 <script type="module">
 
   import { auth, db } from "./js/firebase-init.js";
+
   import { translateAuthError } from "./js/auth.js";
+
   import {
     createUserWithEmailAndPassword,
     signOut,
   } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
   import {
     doc,
     setDoc,
     serverTimestamp,
   } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
+
+  /*
+   * API BACKEND
+   *
+   * Untuk testing lokal dari perangkat yang sama dengan Termux:
+   * http://127.0.0.1:3000
+   *
+   * Nanti jika backend sudah memiliki URL publik,
+   * ganti nilai ini dengan URL backend tersebut.
+   */
+  const API_BASE_URL = "http://127.0.0.1:3000";
+
+
   const themeBtn = document.getElementById("themeToggle");
   const formView = document.getElementById("formView");
   const successView = document.getElementById("successView");
+
   const form = document.getElementById("daftarForm");
+
   const errorBox = document.getElementById("daftarError");
   const errorText = document.getElementById("daftarErrorText");
+
   const submitBtn = document.getElementById("daftarSubmit");
   const btnText = document.getElementById("daftarBtnText");
+
   const toggleDPass = document.getElementById("toggleDPass");
   const passwordInput = document.getElementById("dPassword");
 
+
+  /* =========================================================
+     THEME
+  ========================================================== */
+
   themeBtn.addEventListener("click", () => {
-    const isDark = document.body.getAttribute("data-theme") === "dark";
-    document.body.setAttribute("data-theme", isDark ? "light" : "dark");
+
+    const isDark =
+      document.body.getAttribute("data-theme") === "dark";
+
+    document.body.setAttribute(
+      "data-theme",
+      isDark ? "light" : "dark"
+    );
+
     themeBtn.textContent = isDark ? "🌙" : "☀️";
   });
 
+
+  /* =========================================================
+     PASSWORD TOGGLE
+  ========================================================== */
+
   toggleDPass.addEventListener("click", () => {
+
     const show = passwordInput.type === "password";
+
     passwordInput.type = show ? "text" : "password";
-    toggleDPass.textContent = show ? "🙈" : "👁️";
+
+    toggleDPass.textContent = show
+      ? "🙈"
+      : "👁️";
   });
 
+
+  /* =========================================================
+     ERROR
+  ========================================================== */
+
   function showError(msg) {
+
     errorText.textContent = msg;
+
     errorBox.style.display = "flex";
   }
+
+
   function hideError() {
+
     errorBox.style.display = "none";
+
+    errorText.textContent = "";
   }
+
+
+  /* =========================================================
+     LOADING
+  ========================================================== */
+
   function setLoading(loading) {
+
     submitBtn.disabled = loading;
-    btnText.textContent = loading ? "Memproses…" : "Daftar";
+
+    btnText.textContent = loading
+      ? "Memproses…"
+      : "Daftar";
   }
+
 
   let submitting = false;
 
+
+  /* =========================================================
+     FIREBASE + MYSQL REGISTRATION
+  ========================================================== */
+
   form.addEventListener("submit", async (ev) => {
+
     ev.preventDefault();
+
     if (submitting) return;
+
     hideError();
 
-    const name = document.getElementById("dName").value.trim();
-    const email = document.getElementById("dEmail").value.trim();
-    const phone = document.getElementById("dPhone").value.trim();
-    const classId = document.getElementById("dClassId").value.trim();
-    const nis = document.getElementById("dNis").value.trim();
-    const nisn = document.getElementById("dNisn").value.trim();
-    const password = document.getElementById("dPassword").value;
-    const password2 = document.getElementById("dPassword2").value;
+
+    /* ---------------------------------------------------------
+       AMBIL DATA FORM
+    --------------------------------------------------------- */
+
+    const name =
+      document.getElementById("dName").value.trim();
+
+    const email =
+      document.getElementById("dEmail").value.trim();
+
+    const phone =
+      document.getElementById("dPhone").value.trim();
+
+    const classId =
+      document.getElementById("dClassId").value.trim();
+
+    const nis =
+      document.getElementById("dNis").value.trim();
+
+    const nisn =
+      document.getElementById("dNisn").value.trim();
+
+    const password =
+      document.getElementById("dPassword").value;
+
+    const password2 =
+      document.getElementById("dPassword2").value;
+
+
+    /* ---------------------------------------------------------
+       VALIDASI
+    --------------------------------------------------------- */
 
     if (!name || !email || !classId || !nis || !nisn) {
-      return showError("Semua kolom wajib diisi, kecuali telepon.");
+
+      return showError(
+        "Semua kolom wajib diisi, kecuali telepon."
+      );
     }
+
+
     if (password.length < 6) {
-      return showError("Kata sandi minimal 6 karakter.");
+
+      return showError(
+        "Kata sandi minimal 6 karakter."
+      );
     }
+
+
     if (password !== password2) {
-      return showError("Kata sandi dan ulangi kata sandi tidak sama.");
+
+      return showError(
+        "Kata sandi dan ulangi kata sandi tidak sama."
+      );
     }
+
 
     submitting = true;
+
     setLoading(true);
 
+
     let createdUid = null;
+
+    let firebaseProfileSaved = false;
+
+
     try {
-      // 1) Buat akun Firebase Authentication. Ini halaman publik tanpa sesi
-      //    admin yang perlu dilindungi, jadi dipakai langsung `auth` primer
-      //    (berbeda dari Manajemen Pengguna yang butuh instance kedua).
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
+
+      /* =======================================================
+         1. FIREBASE AUTHENTICATION
+      ======================================================== */
+
+      const cred =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
       createdUid = cred.user.uid;
 
-      // 2) Simpan profil ke Firestore dengan status PENDING & disabled:true.
-      //    firestore.rules hanya mengizinkan self-create dengan kombinasi
-      //    role:'siswa' + status:'pending' + disabled:true persis ini — jadi
-      //    siswa tidak bisa memberi dirinya akses portal tanpa di-ACC Admin.
-      await setDoc(doc(db, "users", createdUid), {
-        name, email, phone, classId, nis, nisn,
-        role: "siswa",
-        status: "pending",
-        disabled: true,
-        active: false,
-        createdAt: serverTimestamp(),
-      });
 
-      // 3) Langsung keluar dari sesi — akun belum disetujui, jangan biarkan
-      //    tampak seperti sudah "login".
+      console.log(
+        "Firebase Auth berhasil:",
+        createdUid
+      );
+
+
+      /* =======================================================
+         2. FIRESTORE PROFILE
+      ======================================================== */
+
+      await setDoc(
+        doc(db, "users", createdUid),
+        {
+          name,
+          email,
+          phone,
+
+          classId,
+          nis,
+          nisn,
+
+          role: "siswa",
+
+          status: "pending",
+
+          disabled: true,
+
+          active: false,
+
+          createdAt: serverTimestamp(),
+        }
+      );
+
+      firebaseProfileSaved = true;
+
+
+      console.log(
+        "Profil Firestore berhasil disimpan."
+      );
+
+
+      /* =======================================================
+         3. SINKRONISASI KE MYSQL VIA API
+      ======================================================== */
+
+      let apiResponse;
+
+      try {
+
+        apiResponse = await fetch(
+          `${API_BASE_URL}/api/users`,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              id: createdUid,
+
+              name,
+
+              email,
+
+              phone: phone || null,
+
+              role: "siswa",
+
+              class_id: classId || null,
+
+              nis: nis || null,
+
+              nisn: nisn || null,
+
+              photo_url: null,
+            }),
+          }
+        );
+
+      } catch (networkError) {
+
+        console.error(
+          "Gagal menghubungi API MySQL:",
+          networkError
+        );
+
+        throw new Error(
+          "API backend tidak dapat dihubungi. Pastikan server sman1-api sedang berjalan."
+        );
+      }
+
+
+      /* -------------------------------------------------------
+         BACA RESPONSE API
+      ------------------------------------------------------- */
+
+      let apiData = null;
+
+      try {
+
+        apiData = await apiResponse.json();
+
+      } catch (jsonError) {
+
+        console.error(
+          "Response API bukan JSON:",
+          jsonError
+        );
+
+        throw new Error(
+          `Backend memberikan response tidak valid (HTTP ${apiResponse.status}).`
+        );
+      }
+
+
+      console.log(
+        "Response API:",
+        apiData
+      );
+
+
+      /* -------------------------------------------------------
+         API GAGAL
+      ------------------------------------------------------- */
+
+      if (!apiResponse.ok || !apiData?.success) {
+
+        throw new Error(
+          apiData?.error ||
+          `Gagal menyimpan data ke database (HTTP ${apiResponse.status}).`
+        );
+      }
+
+
+      /* =======================================================
+         4. FIREBASE + FIRESTORE + MYSQL BERHASIL
+      ======================================================== */
+
+      console.log(
+        "Sinkronisasi MySQL berhasil:",
+        apiData
+      );
+
+
+      /* -------------------------------------------------------
+         LOGOUT FIREBASE
+      ------------------------------------------------------- */
+
       await signOut(auth);
 
-      form.reset();
-      formView.style.display = "none";
-      successView.style.display = "block";
-    } catch (error) {
-      console.error("Daftar gagal:", error);
 
-      // Kasus langka: akun Auth berhasil dibuat tapi setDoc gagal (mis. rules
-      // atau koneksi putus di tengah). Beri tahu apa adanya, bukan pura-pura
-      // berhasil — Admin bisa dihubungi manual untuk kasus ini.
+      /* -------------------------------------------------------
+         TAMPILKAN SUCCESS
+      ------------------------------------------------------- */
+
+      form.reset();
+
+      formView.style.display = "none";
+
+      successView.style.display = "block";
+
+
+    } catch (error) {
+
+      console.error(
+        "Daftar gagal:",
+        error
+      );
+
+
+      /*
+       * Kalau Firebase Auth sudah berhasil dibuat tetapi
+       * Firestore/MySQL gagal, jangan pura-pura pendaftaran
+       * berhasil.
+       */
+
       if (createdUid) {
+
         showError(
-          "Akun berhasil dibuat, tetapi data pendaftaran gagal disimpan. Hubungi Admin/Tata Usaha sekolah dan sebutkan email yang tadi didaftarkan."
+          error?.message ||
+          "Akun berhasil dibuat tetapi proses sinkronisasi data gagal. Hubungi Admin/Tata Usaha sekolah."
         );
+
       } else {
-        showError(translateAuthError(error?.code));
+
+        showError(
+          translateAuthError(error?.code)
+        );
       }
+
+
+      /*
+       * Jika Auth sudah membuat sesi tetapi proses berikutnya
+       * gagal, kita tetap logout agar browser tidak tertinggal
+       * dalam keadaan login sebagai akun pending.
+       */
+
+      if (createdUid) {
+
+        try {
+
+          await signOut(auth);
+
+        } catch (signOutError) {
+
+          console.error(
+            "Gagal signOut setelah error:",
+            signOutError
+          );
+        }
+      }
+
+
     } finally {
+
       setLoading(false);
+
       submitting = false;
     }
+
   });
 
 </script>
